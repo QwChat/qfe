@@ -19,7 +19,7 @@ interface IndexState {}
 
 class Index extends React.Component<IndexProps, IndexState> {
   public render(): JSX.Element {
-    return <span>Index</span>;
+    return <span>Index test</span>;
   }
 }
 
