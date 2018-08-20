@@ -40,7 +40,20 @@ export const webpackConfig: webpack.Configuration = {
         extensions: [ ".ts", ".tsx", ".js", ".jsx" ]
     },
     optimization: {
-        minimizer
+        minimizer,
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    name: "vendor",
+                    test(chunks) {
+                        return chunks.resource && /\/node_modules\/(react|react-dom|axios)\//i.test(chunks.resource)
+                    },
+                    filename: __DEV__ ? "js/[name].bundle.js" : "js/[name].[hash].bundle.js",
+                    chunks: "initial",
+                    enforce: true
+                }
+            }
+        }
     },
     module: {
         rules: [
